@@ -6,7 +6,8 @@ import './App.css';
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  
+  const [filter, setFilter] = useState('All');
+
   const addTask = (description) => {
     const newTask = {
       id: Date.now(),
@@ -40,17 +41,33 @@ function App() {
     ));
   };
 
+  const clearCompletedTasks = () => {
+    setTasks(tasks.filter(task => !task.completed));
+  };
+
+  const filteredTasks = tasks.filter(task => {
+    if (filter === 'All') return true;
+    if (filter === 'Active') return !task.completed;
+    if (filter === 'Completed') return task.completed;
+  });
+
+  const unfinishedTasksCount = tasks.filter(task => !task.completed).length;
+
   return (
     <section className="todoapp">
       <NewTaskForm addTask={addTask} />
       <TaskList 
-        tasks={tasks} 
+        tasks={filteredTasks} 
         toggleTaskCompleted={toggleTaskCompleted} 
         deleteTask={deleteTask} 
         toggleTaskEditing={toggleTaskEditing}
         updateTask={updateTask}
       />
-      <Footer tasksCount={tasks.length} />
+      <Footer 
+        tasksCount={unfinishedTasksCount} 
+        setFilter={setFilter} 
+        clearCompletedTasks={clearCompletedTasks}
+      />
     </section>
   );
 }

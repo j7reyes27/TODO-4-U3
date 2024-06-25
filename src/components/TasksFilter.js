@@ -1,16 +1,22 @@
 import React from 'react';
 
-const TasksFilter = () => {
+const TasksFilter = ({ setFilter }) => {
   return (
-    <ul className="filters">
+    <ul className='filters'>
       <li>
-        <button className="selected">All</button>
+        <button className='selected' onClick={() => setFilter('All')}>
+          All
+        </button>
       </li>
       <li>
-        <button>Active</button>
+        <button onClick={() => setFilter('Active')}>
+          Active
+        </button>
       </li>
       <li>
-        <button>Completed</button>
+        <button onClick={() => setFilter('Completed')}>
+          Completed
+        </button>
       </li>
     </ul>
   );
