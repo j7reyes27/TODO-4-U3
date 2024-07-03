@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const TasksFilter = ({ setFilter }) => {
   return (
@@ -20,6 +21,14 @@ const TasksFilter = ({ setFilter }) => {
       </li>
     </ul>
   );
+};
+
+TasksFilter.propTypes = {
+  setFilter: PropTypes.func.isRequired
+};
+
+TasksFilter.defaultProps = {
+  setFilter: () => {}
 };
 
 export default TasksFilter;

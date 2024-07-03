@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const NewTaskForm = ({ addTask }) => {
   const [description, setDescription] = useState('');
@@ -25,6 +26,14 @@ const NewTaskForm = ({ addTask }) => {
       </form>
     </header>
   );
+};
+
+NewTaskForm.propTypes = {
+  addTask: PropTypes.func.isRequired
+};
+
+NewTaskForm.defaultProps = {
+  addTask: () => {}
 };
 
 export default NewTaskForm;
